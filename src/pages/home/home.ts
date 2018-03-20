@@ -20,14 +20,14 @@ export class HomePage {
     this.oggettiPrestati =  [{
       nomeOggetto: 'Libro Piccole donne',
       nomePersona: 'Marco Bellino',
-      dataPrestito: '10/03/2018',
+      dataPrestito: '10-03-2018',
       fotoPersona: ' ',
       restituito: false
     },
     {
       nomeOggetto: 'Barbecue da giardino',
       nomePersona: 'Sophia Loren',
-      dataPrestito: '20/08/2017',
+      dataPrestito: '20-08-2017',
       fotoPersona: ' ',
       restituito: true
     }];
@@ -47,10 +47,15 @@ export class HomePage {
     });
 
     const oggettoPrestatoNuovo = new OggettoPrestato();
-    if(this.oggettiPrestati && oggettoPrestatoNuovo){
-      this.oggettiPrestati.push(oggettoPrestatoNuovo);
-      this.nativeStorage.setItem('oggettiPrestati', this.oggettiPrestati);
+     if(this.oggettiPrestati && oggettoPrestatoNuovo){
+     this.oggettiPrestati.push(oggettoPrestatoNuovo);
+     this.nativeStorage.setItem('oggettiPrestati', this.oggettiPrestati);
     }
+    //  const oggettoPrestatoNuovo = new OggettoForm();
+    //   if(this.datiInseriti && oggettoPrestatoNuovo){
+    //   this.oggettiPrestati.push(oggettoPrestatoNuovo);
+    //   this.nativeStorage.setItem('datiInseriti', this.oggettiPrestati);
+    // }
   }
   dettaglioOggetto(object: OggettoPrestato){
     this.navCtrl.push(DettaglioOggettoPage, {

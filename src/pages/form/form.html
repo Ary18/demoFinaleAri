@@ -32,9 +32,12 @@
 
         <ion-item>
             <ion-label floating>Foto di chi l'ha preso in prestito</ion-label>
-            <ion-input type="text" [(ngModel)]="datiInseriti.fotoPersona"></ion-input>
+             <ion-input type="text" [(ngModel)]="datiInseriti.fotoPersona"></ion-input> 
         </ion-item> 
       </ion-list>
       <button ion-button color="secondary" clear (click)="salvaDati()">Salva</button>
       <button ion-button type="reset" color="danger" clear>Modifica</button>
+      <button ion-button full color="primary" (click)="ScattaFoto()">
+        <ion-icon name="camera"></ion-icon>Inserisci una foto
+      </button>
 </ion-content>

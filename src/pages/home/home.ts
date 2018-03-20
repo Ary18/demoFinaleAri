@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { OggettoPrestato } from '../../app/models/oggettoPrestato';
+import { DettaglioOggettoPage } from '../dettaglio-oggetto/dettaglio-oggetto';
+import { FormPage } from '../form/form';
+import { OggettoForm } from '../../app/models/oggettoForm';
 
 @Component({
   selector: 'page-home',
@@ -10,35 +13,47 @@ import { OggettoPrestato } from '../../app/models/oggettoPrestato';
 export class HomePage {
   oggettiPrestati: OggettoPrestato[] = [];
   oggettoPrestato: OggettoPrestato;
-  constructor(public navCtrl: NavController, private nativeStorage: NativeStorage) {
+  datiInseriti: OggettoForm;
+  constructor(public navCtrl: NavController, private navParams: NavParams, private nativeStorage: NativeStorage) {
+
+    this.oggettiPrestati =  [{
+      nomeOggetto: 'Libro Piccole donne',
+      nomePersona: 'Marco Bellino',
+      dataPrestito: '10/03/2018',
+      fotoPersona: ' ',
+      restituito: false
+    },
+    {
+      nomeOggetto: 'Barbecue da giardino',
+      nomePersona: 'Sophia Loren',
+      dataPrestito: '20/08/2017',
+      fotoPersona: ' ',
+      restituito: true
+    }];
+
     this.nativeStorage.getItem('oggettiPrestati')
     .then(
       data => this.oggettiPrestati = data,
       error => {
         console.log(error);
-        this.setOggettiPrestati();
       }
     );
+    
+    this.datiInseriti = this.navParams.get('datiInseriti');
   }
   AggiungiOggettoPrestato(){
+    this.navCtrl.push(FormPage, {
+    });
+
     const oggettoPrestatoNuovo = new OggettoPrestato();
     if(this.oggettiPrestati && oggettoPrestatoNuovo){
       this.oggettiPrestati.push(oggettoPrestatoNuovo);
       this.nativeStorage.setItem('oggettiPrestati', this.oggettiPrestati);
     }
   }
-  setOggettiPrestati(){
-    this.oggettiPrestati =  [{
-      nomeOggetto: 'Libro Piccole donne',
-      nomePersona: 'Marco Bellino',
-      dataPrestito: '10/03/2018',
-      fotoPersona: ' '
-    },
-    {
-      nomeOggetto: 'Barbecue da giardino',
-      nomePersona: 'Sophia Loren',
-      dataPrestito: '20/08/2017',
-      fotoPersona: ' '
-    }];
+  dettaglioOggetto(object: OggettoPrestato){
+    this.navCtrl.push(DettaglioOggettoPage, {
+      object: object
+    });
   }
 }

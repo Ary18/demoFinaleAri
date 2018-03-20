@@ -7,12 +7,34 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>form</ion-title>
+    <ion-title>Form</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
+    <h2>Inserisci i seguenti dati:</h2>
+    <ion-list>
+        <ion-item>
+          <ion-label floating>Nome dell'oggetto prestato</ion-label>
+          <ion-input type="text" [(ngModel)]="datiInseriti.nomeOggetto"></ion-input>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label floating>Nome di chi l'ha preso in prestito</ion-label>
+          <ion-input type="text" [(ngModel)]="datiInseriti.nomePersona"></ion-input>
+        </ion-item>
 
+        <ion-item>
+            <ion-label floating>Quando è stato preso in prestito</ion-label>
+            <ion-datetime displayFormat="DD-MM-YYYY" [(ngModel)]="today"></ion-datetime>
+        </ion-item> 
+
+        <ion-item>
+            <ion-label floating>Foto di chi l'ha preso in prestito</ion-label>
+            <ion-input type="text" [(ngModel)]="datiInseriti.fotoPersona"></ion-input>
+        </ion-item> 
+      </ion-list>
+      <button ion-button color="secondary" clear (click)="salvaDati()">Salva</button>
+      <button ion-button type="reset" color="danger" clear>Modifica</button>
 </ion-content>

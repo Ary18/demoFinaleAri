@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { OggettoPrestato } from '../../app/models/oggettoPrestato';
 
 /**
  * Generated class for the DettaglioOggettoPage page.
@@ -14,8 +15,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'dettaglio-oggetto.html',
 })
 export class DettaglioOggettoPage {
-
+  private object: OggettoPrestato;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.object = this.navParams.get('object');
   }
 
   ionViewDidLoad() {

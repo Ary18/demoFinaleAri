@@ -7,8 +7,37 @@
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+    <h2>Benvenuto nell'APPietro!</h2>
+    <h3>I miei oggetti prestati:</h3>
+    <!-- <ion-list *ngFor="let object of oggettiPrestati">
+        <ion-item>{{object.nomeOggetto}}</ion-item>
+        <ion-item>Prestato a: {{object.nomePersona}}</ion-item>
+        <ion-item>In data: {{object.dataPrestito}}</ion-item>
+      </ion-list>  -->
+   <ion-list *ngFor="let object of oggettiPrestati">
+    <ion-item-sliding>
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="img/slimer.png">
+        </ion-avatar>
+        <h2>{{object.nomeOggetto}}</h2>
+        <p>Prestato a: {{object.nomePersona}}, In data: {{object.dataPrestito}}</p>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="light" (click)="dettaglioOggetto()">
+          <ion-icon name="ios-more"></ion-icon>
+          Dettagli
+        </button>
+        <button ion-button color="secondary">
+          <ion-icon name="call"></ion-icon>
+          Consegnato
+        </button>
+        <button ion-button color="danger">
+          <ion-icon name="mail"></ion-icon>
+          Non consegnato
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list> 
+  <button ion-button block (click)="AggiungiOggettoPrestato()">Aggiungi un oggetto prestato</button>
 </ion-content>

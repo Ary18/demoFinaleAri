@@ -1,6 +1,6 @@
 export class OggettoPrestato {
     nomeOggetto: string;
     nomePersona: string;
-    dataPrestito: number;
+    dataPrestito: string;
     fotoPersona: string;
 }

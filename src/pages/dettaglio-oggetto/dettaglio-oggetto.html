@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>dettaglio-oggetto</ion-title>
+    <ion-title>Dettaglio</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -20,11 +20,24 @@
         <img src="img/marty-avatar.png">
       </ion-avatar>
       <h2>{{object.nomeOggetto}}</h2>
-      <p>November 5, 1955</p>
     </ion-item>
     <ion-card-content>
-      <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?!
-        Whoa. This is heavy.</p>
+      <ion-list>
+        <ion-item>
+          <h2>Chi</h2>
+          <p>{{object.nomePersona}}</p>
+        </ion-item>
+      </ion-list>
+      <ion-list>
+        <ion-item>
+          <h2>Quando</h2>
+          <p>{{object.dataPrestito}}</p>
+        </ion-item>
+      </ion-list>
+      <ion-item>
+          <h2>Restituito</h2>
+          <p>{{object.restituito}}</p>
+        </ion-item>
     </ion-card-content>
     </ion-card>
 </ion-content>

@@ -58,9 +58,9 @@ export class HomePage {
     });
   }
   oggettoConsegnato(){
-    this.buttonColor = '#00ff00'; 
+    this.buttonColor = '#34b505'; 
   }
   oggettoNonConsegnato(){
-    this.buttonColor = '#ff0000'; 
+    this.buttonColor = '#f24343'; 
   }
 }

@@ -22,6 +22,7 @@ export class FormPage {
     this.datiInseriti.nomePersona = '';
     this.datiInseriti.dataPrestito = '';
     this.datiInseriti.fotoPersona = '';
+    this.datiInseriti.restituito = false;
   }
 
   ionViewDidLoad() {

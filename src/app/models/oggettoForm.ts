@@ -3,4 +3,5 @@ export class OggettoForm {
     nomePersona: string;
     dataPrestito: string;
     fotoPersona: string;
+    restituito: boolean;
 }

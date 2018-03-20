@@ -18,10 +18,10 @@ import { OggettoForm } from '../../app/models/oggettoForm';
 export class FormPage {
   datiInseriti: OggettoForm = new OggettoForm();
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.datiInseriti.nomeOggetto = 'pippo';
-    this.datiInseriti.nomePersona = 'pippino';
-    this.datiInseriti.dataPrestito = '20/03/2018';
-    this.datiInseriti.fotoPersona = 'pippetto';
+    this.datiInseriti.nomeOggetto = '';
+    this.datiInseriti.nomePersona = '';
+    this.datiInseriti.dataPrestito = '';
+    this.datiInseriti.fotoPersona = '';
   }
 
   ionViewDidLoad() {

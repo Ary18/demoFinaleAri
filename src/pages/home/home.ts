@@ -11,6 +11,7 @@ import { OggettoForm } from '../../app/models/oggettoForm';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  buttonColor: string = '#ffffff';
   oggettiPrestati: OggettoPrestato[] = [];
   oggettoPrestato: OggettoPrestato;
   datiInseriti: OggettoForm;
@@ -55,5 +56,11 @@ export class HomePage {
     this.navCtrl.push(DettaglioOggettoPage, {
       object: object
     });
+  }
+  oggettoConsegnato(){
+    this.buttonColor = '#00ff00'; 
+  }
+  oggettoNonConsegnato(){
+    this.buttonColor = '#ff0000'; 
   }
 }

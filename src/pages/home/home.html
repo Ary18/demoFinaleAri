@@ -16,7 +16,7 @@
       </ion-list>  -->
    <ion-list *ngFor="let object of oggettiPrestati">
     <ion-item-sliding>
-      <ion-item>
+      <ion-item [ngStyle]="{'background-color': buttonColor}">
         <ion-avatar item-start>
           <img src="img/slimer.png">
         </ion-avatar>
@@ -24,16 +24,16 @@
         <p>Prestato a: {{object.nomePersona}}, In data: {{object.dataPrestito}}</p>
       </ion-item>
       <ion-item-options side="right">
-        <button ion-button color="light" (click)="dettaglioOggetto()">
+        <button ion-button color="light" (click)="dettaglioOggetto(object)">
           <ion-icon name="ios-more"></ion-icon>
           Dettagli
         </button>
-        <button ion-button color="secondary">
-          <ion-icon name="call"></ion-icon>
+        <button ion-button color="secondary" (click)="oggettoConsegnato()">
+          <ion-icon name="checkmark"></ion-icon>
           Consegnato
         </button>
-        <button ion-button color="danger">
-          <ion-icon name="mail"></ion-icon>
+        <button ion-button color="danger" (click)="oggettoNonConsegnato()">
+          <ion-icon name="close"></ion-icon>
           Non consegnato
         </button>
       </ion-item-options>

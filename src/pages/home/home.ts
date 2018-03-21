@@ -5,6 +5,7 @@ import { OggettoPrestato } from '../../app/models/oggettoPrestato';
 import { DettaglioOggettoPage } from '../dettaglio-oggetto/dettaglio-oggetto';
 import { FormPage } from '../form/form';
 import { OggettoForm } from '../../app/models/oggettoForm';
+import { OggettoServiceProvider } from '../../providers/oggetto-service/oggetto-service';
 
 @Component({
   selector: 'page-home',
@@ -15,20 +16,20 @@ export class HomePage {
   oggettiPrestati: OggettoPrestato[] = [];
   oggettoPrestato: OggettoPrestato;
   datiInseriti: OggettoForm;
-  constructor(public navCtrl: NavController, private navParams: NavParams, private nativeStorage: NativeStorage) {
+  constructor(public navCtrl: NavController, private navParams: NavParams, private nativeStorage: NativeStorage, private oggettoServiceProvider: OggettoServiceProvider) {
 
     this.oggettiPrestati =  [{
       nomeOggetto: 'Libro Piccole donne',
       nomePersona: 'Marco Bellino',
       dataPrestito: '10-03-2018',
-      fotoPersona: ' ',
+      fotoPersona: '/Users/useracd04/Desktop/Week06/Day02/demoFinaleAri/demoFinale/src/assets/imgs/libroPiccoleDonne.jpg ',
       restituito: false
     },
     {
       nomeOggetto: 'Barbecue da giardino',
       nomePersona: 'Sophia Loren',
       dataPrestito: '20-08-2017',
-      fotoPersona: ' ',
+      fotoPersona: '/Users/useracd04/Desktop/Week06/Day02/demoFinaleAri/demoFinale/src/assets/imgs/barbecue.jpg',
       restituito: true
     }];
 
@@ -42,20 +43,17 @@ export class HomePage {
     
     this.datiInseriti = this.navParams.get('datiInseriti');
   }
+
   AggiungiOggettoPrestato(){
     this.navCtrl.push(FormPage, {
     });
+    this.oggettoServiceProvider.prendiOggetto().subscribe(datiInseriti => this.datiInseriti = datiInseriti);
 
-    const oggettoPrestatoNuovo = new OggettoPrestato();
-     if(this.oggettiPrestati && oggettoPrestatoNuovo){
+    const oggettoPrestatoNuovo = new OggettoForm();
+    if(this.oggettiPrestati && oggettoPrestatoNuovo){
      this.oggettiPrestati.push(oggettoPrestatoNuovo);
      this.nativeStorage.setItem('oggettiPrestati', this.oggettiPrestati);
     }
-    //  const oggettoPrestatoNuovo = new OggettoForm();
-    //   if(this.datiInseriti && oggettoPrestatoNuovo){
-    //   this.oggettiPrestati.push(oggettoPrestatoNuovo);
-    //   this.nativeStorage.setItem('datiInseriti', this.oggettiPrestati);
-    // }
   }
   dettaglioOggetto(object: OggettoPrestato){
     this.navCtrl.push(DettaglioOggettoPage, {

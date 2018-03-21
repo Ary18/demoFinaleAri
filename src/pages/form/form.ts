@@ -27,10 +27,13 @@ export class FormPage {
     console.log('ionViewDidLoad FormPage');
   }
   salvaDati(){
-    this.navCtrl.push(HomePage,{
-      datiInseriti: this.datiInseriti
-    });
+    //this.navCtrl.push(HomePage,{
+    //this.navCtrl.push(this.oggettoServiceProvider.addOggetto(this.datiInseriti),{
+   //   datiInseriti: this.datiInseriti
+   // });
     // this.oggettoServiceProvider.addOggetto(this.datiInseriti);
+    this.oggettoServiceProvider.addOggetto(this.datiInseriti);
+    this.navCtrl.pop();
   }
   scattaFoto(){
      const options: CameraOptions = {

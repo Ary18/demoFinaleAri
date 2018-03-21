@@ -43,15 +43,18 @@ export class HomePage {
     this.datiInseriti = this.navParams.get('datiInseriti');
     // this.convertiDati(this.datiInseriti);
   }
+  ionViewDidLoad() {
+    this.oggettoServiceProvider.prendiOggetto().subscribe(x => this.oggettiPrestati = x)
+  }
 
   AggiungiOggettoPrestato(){
     this.navCtrl.push(FormPage, {
     });
-    this.oggettoServiceProvider.prendiOggetto().subscribe(datiInseriti => this.datiInseriti = datiInseriti);
+    //this.oggettoServiceProvider.prendiOggetto().subscribe(datiInseriti => this.datiInseriti = datiInseriti);
 
     const oggettoPrestatoNuovo = new OggettoForm();
     if(this.oggettiPrestati && oggettoPrestatoNuovo){
-     this.oggettiPrestati.push(oggettoPrestatoNuovo);
+    // this.oggettiPrestati.push(oggettoPrestatoNuovo);
      this.nativeStorage.setItem('oggettiPrestati', this.oggettiPrestati);
     }
   }

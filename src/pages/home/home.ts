@@ -11,7 +11,7 @@ import { OggettoForm } from '../../app/models/oggettoForm';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  buttonColor: string = '#ffffff';
+  // buttonColor: string = '#ffffff';
   oggettiPrestati: OggettoPrestato[] = [];
   oggettoPrestato: OggettoPrestato;
   datiInseriti: OggettoForm;
@@ -63,9 +63,13 @@ export class HomePage {
     });
   }
   oggettoConsegnato(){
-    this.buttonColor = '#34b505'; 
+    // this.buttonColor = '#34b505';  
+    this.oggettoPrestato.restituito != true; 
+    this.datiInseriti.restituito != true; 
   }
   oggettoNonConsegnato(){
-    this.buttonColor = '#f24343'; 
+    // this.buttonColor = '#f24343'; 
+    this.oggettoPrestato.restituito != false;
+    this.datiInseriti.restituito != false; 
   }
 }

@@ -12,6 +12,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 })
 export class FormPage {
   datiInseriti: OggettoForm = new OggettoForm();
+  photos: string[] = [];
+  base64Image: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera) {
     this.datiInseriti.nomeOggetto = '';
     this.datiInseriti.nomePersona = '';
@@ -36,16 +38,14 @@ export class FormPage {
        mediaType: this.camera.MediaType.PICTURE,
        sourceType: 0
     }
-    
     this.camera.getPicture(options).then((imageData) => {
     // imageData is either a base64 encoded string or a file URI
     // If it's base64:
-      //let base64Image = 'data:image/jpeg;base64,' + imageData;
+      // let base64Image = 'data:image/jpeg;base64,' + imageData;
       this.base64Image = "data:image/jpeg;base64," + imageData;
       this.photos.push(this.base64Image);
       this.photos.reverse();
     }, (err) => {
-      // Handle error
       console.log(err);
     });
   }

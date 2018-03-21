@@ -13,31 +13,38 @@
 </ion-header>
 
 <ion-content padding>
-    <h2>Inserisci i seguenti dati:</h2>
-    <ion-list>
-        <ion-item>
-          <ion-label floating>Nome dell'oggetto prestato</ion-label>
-          <ion-input type="text" [(ngModel)]="datiInseriti.nomeOggetto"></ion-input>
-        </ion-item>
-      
-        <ion-item>
-          <ion-label floating>Nome di chi l'ha preso in prestito</ion-label>
-          <ion-input type="text" [(ngModel)]="datiInseriti.nomePersona"></ion-input>
-        </ion-item>
+  <h2>Inserisci i seguenti dati:</h2>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Nome dell'oggetto prestato</ion-label>
+      <ion-input type="text" [(ngModel)]="datiInseriti.nomeOggetto"></ion-input>
+    </ion-item>
 
-        <ion-item>
-            <ion-label floating>Quando è stato preso in prestito</ion-label>
-            <ion-datetime displayFormat="DD-MM-YYYY" [(ngModel)]="datiInseriti.dataPrestito"></ion-datetime>
-        </ion-item> 
+    <ion-item>
+      <ion-label floating>Nome di chi l'ha preso in prestito</ion-label>
+      <ion-input type="text" [(ngModel)]="datiInseriti.nomePersona"></ion-input>
+    </ion-item>
 
-        <ion-item>
-            <ion-label floating>Foto di chi l'ha preso in prestito</ion-label>
+    <ion-item>
+      <ion-label floating>Quando è stato preso in prestito</ion-label>
+      <ion-datetime displayFormat="DD-MM-YYYY" [(ngModel)]="datiInseriti.dataPrestito"></ion-datetime>
+    </ion-item>
+    <!-- <ion-item>
              <ion-input type="text" [(ngModel)]="datiInseriti.fotoPersona"></ion-input> 
-        </ion-item> 
-      </ion-list>
-      <button ion-button color="secondary" clear (click)="salvaDati()">Salva</button>
-      <button ion-button type="reset" color="danger" clear>Modifica</button>
-      <button ion-button full color="primary" (click)="ScattaFoto()">
-        <ion-icon name="camera"></ion-icon>Inserisci una foto
-      </button>
+        </ion-item>  -->
+  </ion-list>
+  <button ion-button full color="primary" (click)="scattaFoto()">
+    <ion-icon name="camera"></ion-icon>Inserisci una foto</button>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6 *ngFor="let photo of photos; let id = index">
+        <ion-card class="block">
+          <ion-icon name="trash" class="deleteIcon" (click)="deletePhoto(id)"></ion-icon>
+          <img [src]="photo" *ngIf="photo"/>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <button ion-button color="secondary" clear (click)="salvaDati()">Salva</button>
+  <button ion-button type="reset" color="danger" clear>Modifica</button>
 </ion-content>

@@ -11,12 +11,20 @@
   <h3>I miei oggetti prestati:</h3>
   <ion-list *ngFor="let object of oggettiPrestati">
     <ion-item-sliding>
-      <ion-item [ngStyle]="{'background-color': buttonColor}">
+      <!-- <ion-item [ngStyle]="{'background-color': buttonColor}"> -->
+      <ion-item *ngIf="object.restituito === true" color="secondary">
         <ion-avatar item-start>
           <img src="img/slimer.png">
         </ion-avatar>
         <h2>{{object.nomeOggetto}}</h2>
         <p>Prestato a: {{object.nomePersona}}, In data: {{object.dataPrestito}}</p>
+      </ion-item>
+      <ion-item *ngIf="object.restituito === false" color="danger">
+          <ion-avatar item-start>
+            <img src="img/slimer.png">
+          </ion-avatar>
+          <h2>{{object.nomeOggetto}}</h2>
+          <p>Prestato a: {{object.nomePersona}}, In data: {{object.dataPrestito}}</p>
       </ion-item>
       <ion-item-options side="right">
         <button ion-button color="light" (click)="dettaglioOggetto(object)">

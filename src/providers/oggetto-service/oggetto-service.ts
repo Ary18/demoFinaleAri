@@ -5,14 +5,21 @@ import { OggettoPrestato } from '../../app/models/oggettoPrestato';
 import { FormPage } from '../../pages/form/form';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 @Injectable()
 export class OggettoServiceProvider {
   //datiInseriti: OggettoForm = new OggettoForm();
    private arrayOggetti: OggettoForm[];
-  constructor() {
+  constructor(private nativeStorage: NativeStorage,) {
     this.arrayOggetti = [];
-    console.log('Hello OggettoServiceProvider Provider');
+    this.nativeStorage.getItem('arrayOggetti')
+    .then(
+      data => this.arrayOggetti = data,
+      error => {
+        console.log(error);
+      }
+    );
   }
   prendiOggetto(): Observable<OggettoForm[]> {
     //return of(this.datiInseriti);
@@ -20,5 +27,6 @@ export class OggettoServiceProvider {
   }
    addOggetto(ogg: OggettoForm){
      this.arrayOggetti.push(ogg);
+     this.nativeStorage.setItem('arrayOggetti', this.arrayOggetti);
     }
 }

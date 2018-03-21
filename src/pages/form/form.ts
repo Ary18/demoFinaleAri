@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { OggettoForm } from '../../app/models/oggettoForm';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { OggettoServiceProvider } from '../../providers/oggetto-service/oggetto-service';
 
 
 @IonicPage()
@@ -14,11 +15,11 @@ export class FormPage {
   datiInseriti: OggettoForm = new OggettoForm();
   photos: string[] = [];
   base64Image: string;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera, private oggettoServiceProvider: OggettoServiceProvider) {
     this.datiInseriti.nomeOggetto = '';
     this.datiInseriti.nomePersona = '';
     this.datiInseriti.dataPrestito = '';
-    this.datiInseriti.fotoPersona = '';
+    this.datiInseriti.fotoPersona = [];
     this.datiInseriti.restituito = false;
   }
 
@@ -29,6 +30,7 @@ export class FormPage {
     this.navCtrl.push(HomePage,{
       datiInseriti: this.datiInseriti
     });
+    // this.oggettoServiceProvider.addOggetto(this.datiInseriti);
   }
   scattaFoto(){
      const options: CameraOptions = {
@@ -45,6 +47,7 @@ export class FormPage {
       this.base64Image = "data:image/jpeg;base64," + imageData;
       this.photos.push(this.base64Image);
       this.photos.reverse();
+      this.datiInseriti.fotoPersona.push(this.base64Image);    
     }, (err) => {
       console.log(err);
     });

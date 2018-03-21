@@ -9,10 +9,14 @@ import { of } from 'rxjs/observable/of';
 @Injectable()
 export class OggettoServiceProvider {
   datiInseriti: OggettoForm = new OggettoForm();
+  // private arrayOggetti: OggettoForm[];
   constructor() {
     console.log('Hello OggettoServiceProvider Provider');
   }
   prendiOggetto(): Observable<OggettoForm> {
     return of(this.datiInseriti);
   }
+  // addOggetto(ogg){
+  //   this.arrayOggetti.push(ogg);
+  // }
 }

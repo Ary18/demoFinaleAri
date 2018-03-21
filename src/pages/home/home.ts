@@ -12,7 +12,6 @@ import { OggettoServiceProvider } from '../../providers/oggetto-service/oggetto-
   templateUrl: 'home.html'
 })
 export class HomePage {
-  // buttonColor: string = '#ffffff';
   oggettiPrestati: OggettoPrestato[] = [];
   oggettoPrestato: OggettoPrestato;
   datiInseriti: OggettoForm;
@@ -22,14 +21,14 @@ export class HomePage {
       nomeOggetto: 'Libro Piccole donne',
       nomePersona: 'Marco Bellino',
       dataPrestito: '10-03-2018',
-      fotoPersona: '/Users/useracd04/Desktop/Week06/Day02/demoFinaleAri/demoFinale/src/assets/imgs/libroPiccoleDonne.jpg ',
+      fotoPersona: ['../assets/imgs/libroPiccoleDonne.jpg'],
       restituito: false
     },
     {
       nomeOggetto: 'Barbecue da giardino',
       nomePersona: 'Sophia Loren',
       dataPrestito: '20-08-2017',
-      fotoPersona: '/Users/useracd04/Desktop/Week06/Day02/demoFinaleAri/demoFinale/src/assets/imgs/barbecue.jpg',
+      fotoPersona: ['../assets/imgs/barbecue.jpg'],
       restituito: true
     }];
 
@@ -40,8 +39,9 @@ export class HomePage {
         console.log(error);
       }
     );
-    
+
     this.datiInseriti = this.navParams.get('datiInseriti');
+    // this.convertiDati(this.datiInseriti);
   }
 
   AggiungiOggettoPrestato(){
@@ -60,14 +60,25 @@ export class HomePage {
       object: object
     });
   }
-  oggettoConsegnato(){
-    // this.buttonColor = '#34b505';  
-    this.oggettoPrestato.restituito != true; 
-    this.datiInseriti.restituito != true; 
+  oggettoConsegnato(oggetto: OggettoPrestato){  
+    // this.oggettoPrestato.restituito != true; 
+    // this.datiInseriti.restituito != true; 
+    oggetto.restituito ? oggetto.restituito = false : oggetto.restituito = true;
   }
-  oggettoNonConsegnato(){
-    // this.buttonColor = '#f24343'; 
-    this.oggettoPrestato.restituito != false;
-    this.datiInseriti.restituito != false; 
+  oggettoNonConsegnato(oggetto: OggettoPrestato){
+    // this.oggettoPrestato.restituito != false;
+    // this.datiInseriti.restituito != false; 
+    oggetto.restituito ? oggetto.restituito = false : oggetto.restituito = true;
+  }
+  convertiDati(ogg: OggettoForm){
+//oggetto forma a oggettoprestato 
+    const oggettoPrestato = {
+    nomeOggetto: ogg.nomeOggetto,
+    nomePersona: ogg.nomePersona,
+    dataPrestito: ogg.dataPrestito,
+    fotoPersona: ogg.fotoPersona,
+    restituito: false
+  }
+  return oggettoPrestato;
   }
 }
